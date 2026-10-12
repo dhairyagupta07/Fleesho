@@ -38,7 +38,7 @@ Backend
 ## Repository structure
 
 ```text
-Shopkart/
+Fleesho/
 ├── Backend/
 │   ├── .env
 │   ├── config/
