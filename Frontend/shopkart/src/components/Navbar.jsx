@@ -33,7 +33,7 @@ function Navbar() {
                         }
                     }}
                 >
-                    ShopKart<span>.</span>
+                    Fleesho<span>.</span>
                 </div>
 
                 <div className="nav-links" aria-label="Main navigation">

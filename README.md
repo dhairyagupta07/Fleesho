@@ -1,6 +1,6 @@
-# Shopkart
+# Fleesho
 
-Shopkart is a full-stack e-commerce web application that lets users browse products, create accounts, add items to a wishlist and cart, place orders, and complete payment using Razorpay. The project is split into a Node.js/Express backend and a React + Vite frontend.
+Fleesho is a full-stack e-commerce web application that lets users browse products, create accounts, add items to a wishlist and cart, place orders, and complete payment using Razorpay. The project is split into a Node.js/Express backend and a React + Vite frontend.
 
 ## Project overview
 
@@ -360,6 +360,6 @@ Possible future enhancements include:
 
 ## Summary
 
-Shopkart is a complete learning-focused e-commerce platform that combines a modern React frontend with a robust Express + MongoDB backend. It covers the main flow of a real online store: authentication, catalog browsing, cart management, checkout, payment verification, and order tracking.
+Fleesho is a complete learning-focused e-commerce platform that combines a modern React frontend with a robust Express + MongoDB backend. It covers the main flow of a real online store: authentication, catalog browsing, cart management, checkout, payment verification, and order tracking.
 
 For local use, simply install dependencies in both the backend and frontend directories, configure the backend environment variables, and start both services. The app is ready to run as a full-stack project in a standard Node.js development environment.

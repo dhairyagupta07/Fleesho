@@ -53,7 +53,7 @@ function Login() {
     return (
         <div className="auth-layout">
             <aside className="auth-aside">
-                <div className="brand">ShopKart<span style={{ color: "var(--coral)" }}>.</span></div>
+                <div className="brand">Fleesho<span style={{ color: "var(--coral)" }}>.</span></div>
                 <div className="aside-copy"><div className="eyebrow">Everyday, better</div><h2>Good things are worth coming back to.</h2><p>A calmer way to keep track of the things you love.</p></div>
             </aside>
             <main className="auth-main">
@@ -62,7 +62,7 @@ function Login() {
                 <h1>Welcome back</h1>
 
                 <p className="intro">
-                    Login to your ShopKart account
+                    Login to your Fleesho account
                 </p>
 
                 {error && (

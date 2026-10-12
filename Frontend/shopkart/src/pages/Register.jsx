@@ -61,7 +61,7 @@ function Register() {
     return (
         <div className="auth-layout">
             <aside className="auth-aside">
-                <div className="brand">ShopKart<span style={{ color: "var(--coral)" }}>.</span></div>
+                <div className="brand">Fleesho<span style={{ color: "var(--coral)" }}>.</span></div>
                 <div className="aside-copy"><div className="eyebrow">A little more you</div><h2>Make room for the good stuff.</h2><p>Join a community that shops with intention.</p></div>
             </aside>
             <main className="auth-main">
@@ -75,7 +75,7 @@ function Register() {
                 </h1>
 
                 <p className="intro">
-                    Join ShopKart today
+                    Join Fleesho today
                 </p>
 
                 {error && (

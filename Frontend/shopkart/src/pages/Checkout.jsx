@@ -107,8 +107,8 @@ function Checkout() {
             key,
             amount,
             currency,
-            name: "ShopKart",
-            description: "ShopKart Order",
+            name: "Fleesho",
+            description: "Fleesho Order",
             order_id: razorpayOrderId,
             prefill: {
                 name: shippingAddress.fullName,
