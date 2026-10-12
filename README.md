@@ -202,6 +202,9 @@ The backend default URL is:
 http://localhost:8000
 ```
 
+The API is served under `/api` (for example, `http://localhost:8000/api/products`).
+The Vite development server proxies `/api` requests to the local backend.
+
 ### 3) Install frontend dependencies
 
 ```bash
@@ -227,39 +230,39 @@ http://localhost:5173
 The backend exposes REST endpoints under the following base paths:
 
 ### Customer routes
-- `POST /customers/register`
-- `POST /customers/login`
-- `GET /customers/me`
-- `POST /customers/logout`
-- `PATCH /customers/change-password`
+- `POST /api/customers/register`
+- `POST /api/customers/login`
+- `GET /api/customers/me`
+- `POST /api/customers/logout`
+- `PATCH /api/customers/change-password`
 
 ### Product routes
-- `POST /products` (create product)
-- `GET /products`
-- `GET /products/:id`
+- `POST /api/products` (create product)
+- `GET /api/products`
+- `GET /api/products/:id`
 
 ### Wishlist routes
-- `GET /wishlist`
-- `POST /wishlist/:productId`
-- `DELETE /wishlist/:productId`
+- `GET /api/wishlist`
+- `POST /api/wishlist/:productId`
+- `DELETE /api/wishlist/:productId`
 
 ### Cart routes
-- `GET /cart`
-- `POST /cart/:productId`
-- `PATCH /cart/:productId`
-- `DELETE /cart/:productId`
+- `GET /api/cart`
+- `POST /api/cart/:productId`
+- `PATCH /api/cart/:productId`
+- `DELETE /api/cart/:productId`
 
 ### Order routes
-- `POST /orders/create-order`
-- `POST /orders/verify-payment`
-- `GET /orders`
-- `GET /orders/:id`
+- `POST /api/orders/create-order`
+- `POST /api/orders/verify-payment`
+- `GET /api/orders`
+- `GET /api/orders/:id`
 
 ## Important implementation notes
 
-- The frontend uses `axios.create({ baseURL: 'http://localhost:8000', withCredentials: true })`
-- Cookies are essential for JWT authentication, so credentials must be sent and allowed by CORS
-- The backend config explicitly allows cross-origin calls from the frontend origin: `http://localhost:5173`
+- The frontend uses Axios with `baseURL: '/api'` and sends cookies with requests
+- Vite proxies `/api` to the local backend; Vercel routes `/api` to the backend service
+- The frontend and backend share an origin in production, so API requests do not require CORS
 - Product and customer validation happen on the server before writing to MongoDB
 - Payment verification is done using a SHA256 HMAC calculated from the Razorpay order ID and payment ID
 
@@ -318,6 +321,26 @@ This project demonstrates a practical e-commerce workflow, but production harden
 - secure secret management using environment variables or a secret manager
 - HTTPS in production
 - production-grade logging and monitoring
+
+## Deploying to Vercel
+
+The root `vercel.json` configures a Vercel Services project with the Express
+backend and the Vite app. Requests under `/api` go to the backend; all other
+requests go to the frontend. The frontend and API therefore share one origin,
+including for authentication cookies.
+
+1. Import this repository into Vercel and deploy it from the repository root.
+   Keep the project root as `.` so Vercel can read the root `vercel.json`.
+2. Add these environment variables to the Vercel project for the backend:
+   - `dbURL`: your MongoDB connection string (allow Vercel deployments in the
+     MongoDB network access settings).
+   - `jwt_secret`: a long, random JWT signing secret.
+   - `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`: your Razorpay credentials.
+3. Deploy. The frontend calls `/api` on the same deployment; no frontend API
+   URL setting is needed.
+
+For local development, run the backend on port 8000 and the Vite app on port
+5173 as described above. Vite proxies API requests to the backend.
 
 ## Development status
 

@@ -7,7 +7,6 @@ import wishlistRoutes from "./routes/wishlist.routes.js"
 import cartRoutes from "./routes/cart.routes.js"
 import orderRoutes from "./routes/order.routes.js"
 import cookieParser from 'cookie-parser'
-import cors from 'cors'
 
 dotenv.config();
 
@@ -18,23 +17,20 @@ mongoose.connect(process.env.dbURL).then(()=>{
 }).catch((err)=>{
     console.log(err);
 })
-
 const PORT = process.env.PORT || 8000;
-
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}));
 
 app.use(express.json())
 app.use(cookieParser())
-app.use('/customers', userRoutes)
-app.use('/products', productRoutes)
-app.use('/wishlist', wishlistRoutes)
-app.use('/cart', cartRoutes)
-app.use('/orders', orderRoutes)
+app.use('/api/customers', userRoutes)
+app.use('/api/products', productRoutes)
+app.use('/api/wishlist', wishlistRoutes)
+app.use('/api/cart', cartRoutes)
+app.use('/api/orders', orderRoutes)
 
-app.listen(PORT, ()=> {
-    console.log(`Server started on port ${PORT}`);
-});
+if (process.env.VERCEL !== '1') {
+    app.listen(PORT, ()=> {
+        console.log(`Server started on port ${PORT}`);
+    });
+}
 
+export default app;
