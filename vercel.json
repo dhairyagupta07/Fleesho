@@ -20,7 +20,7 @@
     {
       "source": "/api/(.*)",
       "destination": {
-        "service": "bakend"
+        "service": "backend"
       }
     },
     {
